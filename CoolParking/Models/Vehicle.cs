@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace CoolParking.Models
 {
-    class Vehicle
+    public class Vehicle
     {
         private string id;
         private readonly string idPattern = @"[A-Z]{2}[-][0-9]{4}[-][A-Z]{2}";

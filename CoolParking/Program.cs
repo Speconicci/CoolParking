@@ -1,4 +1,6 @@
 ﻿using System;
+using CoolParking.Models;
+using CoolParking.Services;
 
 namespace CoolParking
 {
@@ -6,7 +8,10 @@ namespace CoolParking
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ParkingService parkingService = new ParkingService();
+            parkingService.AddVehicle(new Vehicle(VehicleType.Bus, 300m));
+            parkingService.AddVehicle(new Vehicle(VehicleType.Truck, 500m));
+            Console.ReadKey();
         }
     }
 }

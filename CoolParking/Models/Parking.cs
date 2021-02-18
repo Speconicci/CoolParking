@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CoolParking.Models
 {
-    class Parking
+    public class Parking
     {
         public static Parking instance;
         private decimal balance;

@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using CoolParking.Models;
 
-namespace CoolParking.BL.Interfaces
+namespace CoolParking.Interfaces
 {
     public interface IParkingService : IDisposable
     {
