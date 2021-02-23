@@ -82,7 +82,7 @@ namespace CoolParking.Services
 
         public void TopUpVehicle(string vehicleId, decimal sum)
         {
-            FindVehicleById(vehicleId).Balance += sum;
+            FindVehicleById(vehicleId).TopUp(sum);
         }
 
         private void RegularWithdraw(object sender, ElapsedEventArgs e)
@@ -90,7 +90,7 @@ namespace CoolParking.Services
             foreach (Vehicle v in parking.vehicles)
             {
                 decimal withdrawnSum = CalculateWithdrawnSum(v);
-                v.Balance -= withdrawnSum;
+                v.Withdraw(withdrawnSum);
                 currentTransactionInfo.Add(ComposeTransactionInfo(v, withdrawnSum));
                 Console.WriteLine("{1} was withdrawn from the vehicle with id {0}. Vehicle balance is {2}", v.Id, withdrawnSum, v.Balance); // debug
             }

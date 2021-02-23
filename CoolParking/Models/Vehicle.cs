@@ -14,38 +14,56 @@ namespace CoolParking.Models
         public string Id
         {
             get => id;
+            private set
+            {
+                if (Regex.IsMatch(value, idPattern))
+                {
+                    id = value;
+                }
+                else throw new ArgumentException();
+            }
         }
 
         public VehicleType VehicleType
         {
             get => vehicleType;
+            private set => vehicleType = value;
         }
 
         public decimal Balance
         {
             get => balance;
-            set => balance = value;
+            private set
+            {
+                if (value > 0) balance = value;
+                else throw new ArgumentException();
+            }
         }
 
         public Vehicle(string id, VehicleType vehicleType, decimal balance)
         {
-            if (Regex.IsMatch(id, idPattern))
-            {
-                this.id = id;
-            }
-            this.vehicleType = vehicleType;
-            if (balance > 0) this.Balance = balance;
+            this.Id = id;
+            this.VehicleType = vehicleType;
+            this.Balance = balance;
         }
 
         public Vehicle(VehicleType vehicleType, decimal balance)
         {
-            string id = GenerateRandomVehicleId();
-            if (Regex.IsMatch(id, idPattern))
-            {
-                this.id = id;
-            }
-            this.vehicleType = vehicleType;
-            if (balance > 0) this.Balance = balance;
+            this.Id = GenerateRandomVehicleId();
+            this.VehicleType = vehicleType;
+            this.Balance = balance;
+        }
+
+        public void Withdraw(decimal sum)
+        {
+            if (sum > 0) this.balance -= sum;
+            else throw new ArgumentException();
+        }
+
+        public void TopUp(decimal sum)
+        {
+            if (sum <= 0) this.balance += sum;
+            else throw new ArgumentException();
         }
 
         static string GenerateRandomVehicleId()

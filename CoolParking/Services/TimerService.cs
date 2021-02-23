@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Timers;
 using CoolParking.Interfaces;
 
@@ -9,26 +7,26 @@ namespace CoolParking.Services
     public class TimerService : ITimerService
     {
         private Timer timer;
-        private double interval;
 
         public double Interval
         {
-            get => interval;
+            get => timer.Interval;
             set
             {
                 if (value > 0)
                 {
-                    this.interval = value;
-                    this.timer.Interval = value;
+                    timer.Interval = value;
                 }
+                else throw new ArgumentException();
             }
         }
 
         public TimerService(double interval, ElapsedEventHandler eventHandler)
         {
-            this.interval = interval;
-            this.timer = new Timer(interval);
-            this.timer.Elapsed += eventHandler;
+            this.timer = new Timer();
+            this.Interval = interval;
+            if (eventHandler != null) this.timer.Elapsed += eventHandler;
+            else throw new ArgumentException();
         }
 
         public void Dispose()

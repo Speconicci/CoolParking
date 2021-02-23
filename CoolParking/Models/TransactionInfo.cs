@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CoolParking.Models
+﻿namespace CoolParking.Models
 {
     public struct TransactionInfo
     {

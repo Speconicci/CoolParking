@@ -1,5 +1,4 @@
-﻿
-namespace CoolParking.Models
+﻿namespace CoolParking.Models
 {
     public enum VehicleType
     {
